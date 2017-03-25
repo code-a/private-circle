@@ -153,12 +153,64 @@ https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 ### Security setup
 #### Change ssh port
 
+	sudo nano /etc/ssh/sshd_config
+	
+Change the port by commenting out the old line and adding a new one:
 
+	#Port 22
+	Port 54321
+	
+To login again using ssh you now have to specify the port:
+	
+	ssh -p 54321 privatecircle@your-ip
+
+http://codrspace.com/audiojava/changing-ssh-port-number/
 #### Firewall configuration with iptables & ufw
 
+	sudo apt-get install ufw
+	
+Ensure that IPv6 support is enabled:
+
+	sudo nano /etc/default/ufw
+
+Set IPV6 with 'yes':
+
+	...
+	IPV6=yes
+	...
+
+Setting the default policies:
+
+	sudo ufw default deny incoming
+	sudo ufw default allow outgoing
+
+Set the ports to allow for incoming traffic as follows:
+
+	sudo ufw allow <portnumber>
+	
+Example:
+
+	sudo ufw allow 1234
+	
+After the configuration of ufw you have to enbale it:
+
+	sudo ufw enable
+
+
+To check the status and rules of the firewall, enter:
+
+	sudo ufw status verbose
+	
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04
 #### Configuration of unattended upgrades
 
+	sudo apt-get install unattended-upgrades apt-listchanges
+
+https://wiki.debian.org/UnattendedUpgrades
+
 #### Automatic system updates with cron and cron-apt
+	
+
 
 #### Logging configuration
 
