@@ -1,6 +1,7 @@
+# Private Circle
 # Warning: Work in progress
 
-# Private Circle
+[TOC]
 
 
 # Introduction
@@ -214,9 +215,45 @@ https://wiki.debian.org/UnattendedUpgrades
 
 #### Logging configuration
 
-#### Hardening with SELinux
+#### //TODO: delete Hardening with SELinux
 
-#### Virus protection
+#### Hardening with AppArmor
+
+**Installation:**
+
+	sudo apt-get install apparmor apparmor-profiles apparmor-utils auditd
+	
+**Enable appArmor LSM:**
+
+	sudo perl -pi -e 's,GRUB_CMDLINE_LINUX="(.*)"$,GRUB_CMDLINE_LINUX="$1 apparmor=1 security=apparmor",' /etc/default/grub
+	sudo update-grub
+	sudo reboot
+
+**Inspect current state:**
+
+**List all loaded profiles for applications and processes and their status:**
+
+	sudo aa-status
+	
+**List running executables which are currently confined by an AppArmor profile:**
+	
+	sudo aa-unconfined
+
+**Install more profiles:**
+
+	sudo apt-get install apparmor-profiles apparmor-profiles-extra
+	
+
+https://wiki.debian.org/AppArmor/HowToUse
+https://wiki.ubuntuusers.de/AppArmor/
+https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
+#### Virus protection with ClamAV and RKHunter
+
+**ClamAV:**
+
+**RKHunter:**
+https://wiki.ubuntuusers.de/ClamAV/
+
 
 #### Creating limited user accounts
 https://www.linode.com/docs/security/securing-your-server/
@@ -224,6 +261,37 @@ https://www.linode.com/docs/security/securing-your-server/
 https://www.linode.com/docs/security/securing-your-server/
 
 #### Fail2Ban configuration
+
+Install fail2ban:
+
+	sudo apt-get install fail2ban
+
+Copy fail2ban config:
+
+	sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+	
+Edit config and add the following:
+
+	ignoreip = 127.0.0.1
+	bantime  = 3600
+	maxretry = 3
+	
+	enabled = true
+	port    = ssh
+	filter  = sshd
+	logpath  = /var/log/auth.log
+	maxretry = 4
+	
+Restart fail2ban:
+
+	sudo /etc/init.d/fail2ban restart
+	
+Enable fail2ban at startup:
+
+	update-rc.d fail2ban enable
+	
+
+https://www.thomas-krenn.com/de/wiki/SSH_Login_unter_Debian_mit_fail2ban_absichern
 https://www.linode.com/docs/security/securing-your-server/
 #### Intrusion detection
 https://www.linode.com/docs/security/securing-your-server/
@@ -248,11 +316,121 @@ https://gist.github.com/meeee/46133155c4afd8bb71c6
 
 
 
-# Webserver isntallation and hardening
+# Webserver installation and hardening
 
 ## Hardening
+
+### Information leakage
+#### Apache version and OS identity
+
+Open apache2.conf
+
+	nano /etc/apache2/apache2.conf
+	
+Add the following:
+
+	ServerSignature Off
+	ServerTokens	 Prod
+
+Restart apache:
+
+	service apache2 restart
+	
+#### Disable directory listing
+
+Open apache2.conf
+
+	nano /etc/apache2/apache2.conf
+
+Add/set the following:
+
+	<Directory /var/www/html>
+	Options -Indexes
+	</Directory>
+
+### Disable unnecessary modules
+
+Open:
+
+	nano /etc/httpd/conf/httpd.conf
+
+Disable the following modules:
+
+  * //TODO: disable more modules ???
+  * mod_imap
+  * mod_include
+  * mod_info
+  * mod_userdir
+  * mod_autoindex
+  
+### Create apache user and group
+
+	groupadd apache
+	useradd –G apache apache
+	chown –R apache:apache /opt/apache
+	
+	nano /etc/apache2/apache2.conf
+	
+Set the following:
+	
+	User apache 
+	Group apache
+	
+Save and exit.
+
+Restart Apache:
+
+	service apache2 restart
+	
+Verify changes:
+
+	ps –ef |grep http
+	
+-> apache process should show the apache user
+
+### Restrict access to directories
+
+### Protect binary and configuration directory permission
+//TODO: geekflare
+
+### Clickjacking Attack
+//TODO: geekflare
+
+### XSS Protection
+//TODO: geekf
+
+### Disable HTTP 1.0 Protocol
+//TODO: geekf
+
+### Enable Rule Engine
+//TODO: geekf
+
+### Use mod_security and mod_evasive Modules
+
+### Disable following of Symbolic Links
+  
+### Turn off Server Side Includes and CGI Execution
+
+### Disable ETAG
+//TODO: geekflare
+
+### Limit Request Size
+//TODO: nextcloud problem?
+
+### Protect DDOS attacks and Hardening
+
+### Enable Apache Logging
+
+### Securing Apache with SSL Certificates
+
+
+
 http://www.tecmint.com/apache-security-tips/
 https://geekflare.com/apache-web-server-hardening-security/
+
+# Install Mailserver
+
+## Filter to only allow PGP encrypted mails
 
 # Install nextcloud
 
