@@ -255,8 +255,6 @@ https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
 https://wiki.ubuntuusers.de/ClamAV/
 
 
-#### Creating limited user accounts
-https://www.linode.com/docs/security/securing-your-server/
 #### SSH authentication with keypairs
 https://www.linode.com/docs/security/securing-your-server/
 
@@ -365,16 +363,21 @@ Disable the following modules:
   
 ### Create apache user and group
 
+	groupadd http-web
+	useradd -d /var/www/ -g http-web -s /bin/nologin http-web
+	//TODO: check and delete
+	/*
 	groupadd apache
 	useradd –G apache apache
 	chown –R apache:apache /opt/apache
+	*/
 	
 	nano /etc/apache2/apache2.conf
 	
 Set the following:
 	
-	User apache 
-	Group apache
+	User http-web
+	Group http-web
 	
 Save and exit.
 
@@ -390,6 +393,17 @@ Verify changes:
 
 ### Restrict access to directories
 
+Open apache configuration file:
+	
+	nano /etc/apache2/apache2.conf
+
+Set the following:
+
+	<Directory />
+	Options None
+	Order deny,allow
+	Deny from all
+	</Directory>
 ### Protect binary and configuration directory permission
 //TODO: geekflare
 
@@ -407,26 +421,63 @@ Verify changes:
 
 ### Use mod_security and mod_evasive Modules
 
+Install mod_security:
+	
+	sudo apt-get install libapache2-modsecurity
+	sudo a2enmod mod-security
+	sudo /etc/init.d/apache2 force-reload
+	
+//TODO: install mod_evasive
+
+
 ### Disable following of Symbolic Links
   
+ 	nano /etc/apache2/apache2.conf
+ 
+ Set the following:
+ 
+ 	Options -FollowSymLinks
+ 
 ### Turn off Server Side Includes and CGI Execution
+
+ 	nano /etc/apache2/apache2.conf
+ 
+ Set the following:
+
+	Options -Includes
+	Options -ExecCGI
 
 ### Disable ETAG
 //TODO: geekflare
 
 ### Limit Request Size
-//TODO: nextcloud problem?
+//TODO: delete. not compatible with nextcloud?
 
+ 	nano /etc/apache2/apache2.conf
+ 
+ Set the following:
+ 
+	<Directory "/var/www/myweb1/user_uploads">
+	LimitRequestBody 512000
+	</Directory>
 ### Protect DDOS attacks and Hardening
 
-### Enable Apache Logging
+Lower the following values:
 
-### Securing Apache with SSL Certificates
+	LimitRequestFields
+	LimitRequestFieldSize
+	
+
+### Enable Apache Logging
+//TODO: is this needed or compromising privacy? delete?
+
+### Securing Apache with SSL Certificates and LetsEncrypt
 
 
 
 http://www.tecmint.com/apache-security-tips/
 https://geekflare.com/apache-web-server-hardening-security/
+http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel-centos-fedora/
 
 # Install Mailserver
 
