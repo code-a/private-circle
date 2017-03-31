@@ -324,7 +324,10 @@ Enable fail2ban at startup:
 
 https://www.thomas-krenn.com/de/wiki/SSH_Login_unter_Debian_mit_fail2ban_absichern
 https://www.linode.com/docs/security/securing-your-server/
-#### Intrusion detection
+#### Intrusion detection with ossec
+//TODO: move this chapter to the end and create an useful config
+
+https://linode.com/docs/security/ossec-ids-debian-7
 https://www.linode.com/docs/security/securing-your-server/
 
 #### remove unused network services
