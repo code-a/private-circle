@@ -256,6 +256,39 @@ https://wiki.ubuntuusers.de/ClamAV/
 
 
 #### SSH authentication with keypairs
+
+If you don't already have an ssh keypair on your **local** machine, you must create one with the following command:
+
+	ssh-keygen -b 4096
+	
+Copy the ssh key with the following command(in a terminal on your local machine):
+
+	ssh-copy-id server_admin_user@server_ip
+	
+**Disable root logins over ssh:**
+
+Open the ssh config:
+
+	nano /etc/ssh/sshd_config
+
+Set the following option:
+
+	PermitRootLogin no
+	
+**Disable ssh password authentication:**
+
+Open the ssh config:
+
+	nano /etc/ssh/sshd_config
+
+Set the following option:
+
+	PasswordAuthentication no
+
+**Finish with a restart off sshd:**
+
+	sudo systemctl restart sshd
+
 https://www.linode.com/docs/security/securing-your-server/
 
 #### Fail2Ban configuration
