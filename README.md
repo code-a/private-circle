@@ -437,20 +437,6 @@ Set the following:
 	Order deny,allow
 	Deny from all
 	</Directory>
-### Protect binary and configuration directory permission
-//TODO: geekflare
-
-### Clickjacking Attack
-//TODO: geekflare
-
-### XSS Protection
-//TODO: geekf
-
-### Disable HTTP 1.0 Protocol
-//TODO: geekf
-
-### Enable Rule Engine
-//TODO: geekf
 
 ### Use mod_security and mod_evasive Modules
 
@@ -480,19 +466,7 @@ Install mod_security:
 	Options -Includes
 	Options -ExecCGI
 
-### Disable ETAG
-//TODO: geekflare
 
-### Limit Request Size
-//TODO: delete. not compatible with nextcloud?
-
- 	nano /etc/apache2/apache2.conf
- 
- Set the following:
- 
-	<Directory "/var/www/myweb1/user_uploads">
-	LimitRequestBody 512000
-	</Directory>
 ### Protect DDOS attacks and Hardening
 
 Lower the following values:
@@ -625,3 +599,34 @@ https://wiki.debian.org/InstallingProsody
 
 # Credits
 
+
+# TODOS
+## apache hardening subchapters
+### Disable ETAG
+//TODO: geekflare
+
+### Limit Request Size
+//TODO: delete. not compatible with nextcloud?
+
+ 	nano /etc/apache2/apache2.conf
+ 
+ Set the following:
+ 
+	<Directory "/var/www/myweb1/user_uploads">
+	LimitRequestBody 512000
+	</Directory>
+	
+### Protect binary and configuration directory permission
+//TODO: geekflare
+
+### Clickjacking Attack
+//TODO: geekflare
+
+### XSS Protection
+//TODO: geekf
+
+### Disable HTTP 1.0 Protocol
+//TODO: geekf
+
+### Enable Rule Engine
+//TODO: geekf
