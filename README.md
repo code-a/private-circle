@@ -479,6 +479,12 @@ http://www.tecmint.com/apache-security-tips/
 https://geekflare.com/apache-web-server-hardening-security/
 http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel-centos-fedora/
 
+# MariaDB installation & hardening
+//TODO: secure MariaDB (anon users, no password etc)
+
+https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
+https://mariadb.com/kb/en/mariadb/securing-mariadb/
+
 # Install Mailserver
 
 ## Filter to only allow PGP encrypted mails
@@ -494,7 +500,6 @@ http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel
 	sudo a2enmod headers
 	sudo service apache2 restart
 	
-//TODO: secure apache
 
 ## Create MariaDB database
 
@@ -505,7 +510,6 @@ http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel
 	FLUSH PRIVILEGES;
 	exit;
 
-//TODO: secure MariaDB (anon users, no password etc)
 
 ## Download nextcloud
 Please check if a newer version is available before downloading!
