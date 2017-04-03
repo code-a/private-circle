@@ -691,17 +691,42 @@ Set Client2Server and Server2Server encryption:
 	c2s_require_encryption = true
 	s2s_require_encryption = true
 
+### TLS setup
+
+//TODO:
+
+### Log and data path settings
+
+https://prosody.im/doc/configure
+
 ### BOSH server setup
 Setup the BOSH server by adding the following to modules_enabled:
 
 	"bosh";
 	
-	//TODO: HTTP setup for cross-domain access...
-	https://prosody.im/doc/http
+Edit the configuration by adding the following:
 
-### TLS setup
+	cross_domain_bosh = {"https://example.org"}
+	bosh_ports = 
+	{
+		 {
+		    port = 5280;
+		    path = "http-bind";
+		 },
+		 {
+		    port = 5281;
+		    path = "http-bind";
+		    ssl = {
+			     key = "bosh.key";
+			     certificate = "bosh.crt"; 
+			  }
+		 }
+      }
 
-//TODO:
+
+### Setup MUC
+
+https://prosody.im/doc/modules/mod_muc
 
 ### Admin user setup
 
