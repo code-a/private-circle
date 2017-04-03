@@ -691,6 +691,19 @@ Set Client2Server and Server2Server encryption:
 	c2s_require_encryption = true
 	s2s_require_encryption = true
 
+### Hardening
+
+**Client limits:**
+
+Add/change the following:
+
+	limits = {
+	  c2s = {
+	    rate = "3kb/s";
+	    burst = "2s";
+	};
+
+
 ### TLS setup
 
 //TODO:
@@ -725,6 +738,12 @@ Edit the configuration by adding the following:
 
 
 ### Setup MUC
+
+add/change the following in **/etc/prosody/prosody.cfg.lua**:
+
+	Component "conference.{{ prosody_vhost }}" "muc"
+		 restrict_room_creation = "local"
+	max_history_messages = 100
 
 https://prosody.im/doc/modules/mod_muc
 
