@@ -664,7 +664,12 @@ You might have to restart your pi.
 
 	apt-get install prosody
 	
+## Configuration
+
+	
+
 https://wiki.debian.org/InstallingProsody
+https://github.com/systemli/ansible-role-prosody
 
 ## Installing IRC: 
 
