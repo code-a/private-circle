@@ -506,7 +506,54 @@ Update package list:
 Install MariaDB:
 
 	apt-get install mariadb-server mariadb-client
+
+## MariaDB configuration and hardening
+
+Configuration:
+
+	sudo mysql_install_db
+
+Hardening:
+
+	sudo mysql_secure_installation
 	
+Edit My.cnf:
+
+	sudo nano /etc/mysql/my.cnf
+
+Set the following values:
+
+	bind-address = 127.0.0.1
+	local-infile=0
+	log=/var/log/mysql-logfile
+
+Check log file permissions:
+The log should not be world readable!
+
+	sudo ls -l /var/log/mysql*
+	
+Log into MariaDB:
+
+	mysql -u root -p
+
+Delete users without passwords:
+
+List users:
+
+	SELECT User,Host,Password FROM mysql.user;
+
+Change users with host %:
+
+	UPDATE mysql.user SET Host='localhost' WHERE User="demo-user";
+
+Delete users without name or password:
+
+	DELETE FROM mysql.user WHERE User="" OR Password="";
+
+After the changes enter the following to apply changes:
+
+	FLUSH PRIVILEGES;
+
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
 https://mariadb.com/kb/en/mariadb/securing-mariadb/
