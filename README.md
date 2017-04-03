@@ -492,9 +492,25 @@ http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel
 # MariaDB installation & hardening
 //TODO: secure MariaDB (anon users, no password etc)
 
+## Install MariaDB
+
+	apt-get install software-properties-common
+	apt-get install python-software-properties
+	apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+	add-apt-repository 'deb http://mariadb.biz.net.id//repo/10.1/debian sid main'
+
+Update package list:
+
+	apt-get update
+
+Install MariaDB:
+
+	apt-get install mariadb-server mariadb-client
+	
+
 https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
 https://mariadb.com/kb/en/mariadb/securing-mariadb/
-
+http://www.tecmint.com/install-mariadb-in-debian/
 # Install Mailserver
 
 ## Filter to only allow PGP encrypted mails
