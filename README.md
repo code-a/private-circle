@@ -666,12 +666,70 @@ You might have to restart your pi.
 	
 ## Configuration
 
-	
+Open the configuration file:
 
+	sudo nano /etc/prosody/prosody.cfg.lua
+
+Set the domain to use:
+
+	VirtualHost "example.org"
+	
+Disable registration:
+
+	allow_registration = false
+	
+In modules_enabled, delete the following:
+
+	"register";
+	
+Set the authentication to:
+
+	authentication = "internal_hashed"
+
+Set Client2Server and Server2Server encryption:
+
+	c2s_require_encryption = true
+	s2s_require_encryption = true
+
+Setup the BOSH server by adding the following to modules_enabled:
+
+	"bosh";
+	
+	//TODO: HTTP setup for cross-domain access...
+	https://prosody.im/doc/http
+
+### Admin user setup
+
+Create an admin account by editing the following account:
+
+	admins = { prosody-admin@example.org }
+
+You also have to create the user for the admin account:
+
+	prosodyctl adduser prosody-admin@example.com
+
+
+
+
+
+## User management
+
+A list of commands for prosodyctl can be found under the following URL:
+
+https://prosody.im/doc/prosodyctl
+
+
+
+
+
+	
+//TODO: review...
 https://wiki.debian.org/InstallingProsody
 https://github.com/systemli/ansible-role-prosody
 
 ## Installing IRC: 
+
+http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unternehmen-aufsetzen
 
 ## Installing IRC-Web-Client
 
@@ -686,7 +744,7 @@ https://github.com/systemli/ansible-role-prosody
 
 
 # Maintenance
-## Encrypted Backups
+## Encrypted Backups to USB-Stick
 
 ## Backup of encryption key using SSS
 //TODO: c program...
