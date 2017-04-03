@@ -351,9 +351,42 @@ Register at a DynDNS provider, e.g.:
   * no-ip.com
   * dedyn.io
 
+Install DynDNS client:
+
+	sudo apt-get install ddclient
+
+(If it does not start the installation: sudo dpkg-reconfigure ddclient)
+
+Enter the following values if you are asked:
+
+  * service provider: other
+  * dynamic DNS server: update.dedyn.io
+  * update protocol: dyndns2
+
+Enter the credentials you got from your DNS provider.
+
+**Enable SSL:**
+
+	nano /etc/ddclient.conf
+	
+Add:
+
+	ssl=yes
+	
+above:
+
+	server=update.dedyn.io
+	
+**Test the setup:**
+
+	sudo ddclient -force
+	
+
+
 https://jankarres.de/2012/11/raspberry-pi-dyndns-einrichten/
 https://www.einplatinencomputer.com/raspberry-pi/raspberry-pi-dyndns-einrichten/
 https://www.c-rieger.de/nextcloud-installation-guide/
+https://desec.io/#!/en/docs/dyndns-client
 
 # Webserver installation and hardening
 
