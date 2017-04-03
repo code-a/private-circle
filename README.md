@@ -91,11 +91,6 @@ Create new root password:
 	
 https://gordonlesti.com/change-default-users-on-raspberry-pi/
 
-### Change password //TODO: delete
-
-Enter the following line to change the password:
-
-	passwd
 
 ### Wifi setup
 
@@ -211,11 +206,11 @@ https://wiki.debian.org/UnattendedUpgrades
 
 #### Automatic system updates with cron and cron-apt
 	
-
+//TODO:
 
 #### Logging configuration
 
-#### //TODO: delete Hardening with SELinux
+//TODO:
 
 #### Hardening with AppArmor
 
@@ -400,7 +395,6 @@ Open:
 
 Disable the following modules:
 
-  * //TODO: disable more modules ???
   * mod_imap
   * mod_include
   * mod_info
@@ -488,7 +482,7 @@ Lower the following values:
 	LimitRequestFieldSize
 	
 
-### Enable Apache Logging
+### Configure Apache Logging
 //TODO: is this needed or compromising privacy? delete?
 
 ### Securing Apache with SSL Certificates and LetsEncrypt
@@ -500,7 +494,6 @@ https://geekflare.com/apache-web-server-hardening-security/
 http://www.tecmint.com/protect-apache-using-mod_security-and-mod_evasive-on-rhel-centos-fedora/
 
 # MariaDB installation & hardening
-//TODO: secure MariaDB (anon users, no password etc)
 
 ## Install MariaDB
 
@@ -577,21 +570,21 @@ Create nextcloud database:
 Create nextcloud user and grant access:
 
 	CREATE USER 'nextcloud-user'@'localhost' IDENTIFIED BY 'password';
-	//TODO: GRANT SELECT,UPDATE,DELETE ON nextcloud.* TO 'nextcloud-user'@'localhost';
-	//GRANT ALL ON nextcloud.* TO 'nextcloud-user'@'localhost';
+	GRANT ALL ON nextcloud.* TO 'nextcloud-user'@'localhost';
 
 Check privileges:
 
 	FLUSH PRIVILEGES;
 	show grants for 'nextcloud-user'@'localhost';
 
-//TODO: finished with security??
 
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
 https://mariadb.com/kb/en/mariadb/securing-mariadb/
 http://www.tecmint.com/install-mariadb-in-debian/
 # Install Mailserver
+
+//TODO: write chapter
 
 ## Filter to only allow PGP encrypted mails
 
@@ -807,9 +800,6 @@ http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unterne
 
 # Maintenance
 ## Encrypted Backups to USB-Stick
-
-## Backup of encryption key using SSS
-//TODO: c program...
 
 # Credits
 
