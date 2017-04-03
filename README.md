@@ -549,10 +549,33 @@ Change users with host %:
 Delete users without name or password:
 
 	DELETE FROM mysql.user WHERE User="" OR Password="";
+	
+Change root user:
+
+	rename user 'root'@'localhost' to 'newAdminUser'@'localhost';
 
 After the changes enter the following to apply changes:
 
 	FLUSH PRIVILEGES;
+
+## Create databases and users for applications
+
+Create nextcloud database:
+
+	create database nextcloud;
+	
+Create nextcloud user and grant access:
+
+	CREATE USER 'nextcloud-user'@'localhost' IDENTIFIED BY 'password';
+	//TODO: GRANT SELECT,UPDATE,DELETE ON nextcloud.* TO 'nextcloud-user'@'localhost';
+	//GRANT ALL ON nextcloud.* TO 'nextcloud-user'@'localhost';
+
+Check privileges:
+
+	FLUSH PRIVILEGES;
+	show grants for 'nextcloud-user'@'localhost';
+
+//TODO: finished with security??
 
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
