@@ -486,8 +486,29 @@ Install mod_security:
 	sudo a2enmod mod-security
 	sudo /etc/init.d/apache2 force-reload
 	
-//TODO: install mod_evasive
+Install mod_evasive:
 
+	sudo apt-get install libapache2-mod-evasive
+	sudo a2enmod evasive
+	
+**Configure:**
+Directory for logs:
+
+	sudo mkdir /var/log/mod_evasive
+	sudo chown http-web:http-web /var/log/mod_evasive
+
+Configure email notifications:
+
+	sudo ln -s /usr/bin/mail /bin/mail 
+	
+Edit config
+
+	sudo nano  /etc/apache2/mods-available/evasive.conf
+	
+**Make changes happen:**
+
+	sudo service apache2 restart
+	sudo service apache2 force-reload 
 
 ### Disable following of Symbolic Links
   
