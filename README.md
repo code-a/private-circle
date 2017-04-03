@@ -691,12 +691,17 @@ Set Client2Server and Server2Server encryption:
 	c2s_require_encryption = true
 	s2s_require_encryption = true
 
+### BOSH server setup
 Setup the BOSH server by adding the following to modules_enabled:
 
 	"bosh";
 	
 	//TODO: HTTP setup for cross-domain access...
 	https://prosody.im/doc/http
+
+### TLS setup
+
+//TODO:
 
 ### Admin user setup
 
