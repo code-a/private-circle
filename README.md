@@ -348,7 +348,17 @@ https://www.thomas-krenn.com/de/wiki/Voll-verschl%C3%BCsseltes-System_via_SSH_fr
 
 https://gist.github.com/meeee/46133155c4afd8bb71c6
 
+## DynDNS setup
 
+Register at a DynDNS provider, e.g.:
+
+  * desec.io
+  * no-ip.com
+  * dedyn.io
+
+https://jankarres.de/2012/11/raspberry-pi-dyndns-einrichten/
+https://www.einplatinencomputer.com/raspberry-pi/raspberry-pi-dyndns-einrichten/
+https://www.c-rieger.de/nextcloud-installation-guide/
 
 # Webserver installation and hardening
 
@@ -654,6 +664,9 @@ add the following
 
 You might have to restart your pi.
 
+## Hardening
+
+https://www.c-rieger.de/nextcloud-installation-guide/
 
 ## Adding NextCloud Apps
 #### Encryption at rest
