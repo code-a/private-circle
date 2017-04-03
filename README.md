@@ -202,11 +202,11 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-u
 
 	sudo apt-get install unattended-upgrades apt-listchanges
 
+//TODO:
+
 https://wiki.debian.org/UnattendedUpgrades
 
-#### Automatic system updates with cron and cron-apt
-	
-//TODO:
+
 
 #### Logging configuration
 
