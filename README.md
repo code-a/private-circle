@@ -410,12 +410,66 @@ Choose the following options, when asked:
   * installation option: local
   * email: a valid email address
   
-Configuration:
+**Configuration:**
 
 	sudo su
 	cd /var/ossec/etc
 	nano ./ossec.conf
+
+Edit the Email settings in this configuration file.
+
+**Start OSSEC:**
+
+	/var/ossec/bin/ossec-control start
 	
+**configure which files and directories to watch:**
+
+	sudo su
+	cd /var/ossec/etc
+	nano ./ossec.conf
+
+Add the following:
+
+	<syscheck>
+	    <!-- Frequency that syscheck is executed - default to every 22 hours -->
+	    <frequency>79200</frequency>
+
+	    <alert_new_files>yes</alert_new_files>
+
+Add directories to watch in the following section:
+
+    <!-- Directories to check  (perform all possible verifications) -->
+    <directories check_all="yes">/etc,/usr/bin,/usr/sbin</directories>
+    <directories check_all="yes">/bin,/sbin</directories>
+    
+Add directories to ignore:
+
+    <!-- Files/directories to ignore -->
+    <ignore>/etc/mtab</ignore>  
+    <ignore>/etc/mnttab</ignore>
+    <ignore>/etc/hosts.deny</ignore>
+    <ignore>/etc/mail/statistics</ignore>
+    <ignore>/etc/random-seed</ignore>
+    <ignore>/etc/adjtime</ignore>
+    <ignore>/etc/httpd/logs</ignore>
+    <ignore>/etc/utmpx</ignore>
+    <ignore>/etc/wtmpx</ignore>
+    <ignore>/etc/cups/certs</ignore>
+    <ignore>/etc/dumpdates</ignore>
+    <ignore>/etc/svc/volatile</ignore>
+    
+Info: in the active response section you can edit the ban time for an ip that causes an alert.
+
+**Modify rule for new files:**
+
+**Restarting OSSEC:**
+
+**Ad OSSEC WUI:**
+http://www.ossec.net/wiki/index.php/OSSECWUI:Install
+
+**run OSSEC on startup:**
+http://askubuntu.com/questions/604945/ossec-installation-auto-start
+
 //TODO: continue!!!
 
 https://linode.com/docs/security/ossec-ids-debian-7
