@@ -326,7 +326,7 @@ https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
 #### Virus protection with ClamAV and RKHunter
 
 **ClamAV:**
-
+//TODO: 
 **RKHunter:**
 https://wiki.ubuntuusers.de/ClamAV/
 
@@ -401,7 +401,6 @@ Enable fail2ban at startup:
 https://www.thomas-krenn.com/de/wiki/SSH_Login_unter_Debian_mit_fail2ban_absichern
 https://www.linode.com/docs/security/securing-your-server/
 #### Intrusion detection with ossec
-//TODO: move this chapter to the end and create an useful config
 
 Install dependencies:
 
@@ -474,7 +473,7 @@ Add directories to ignore:
 Info: in the active response section you can edit the ban time for an ip that causes an alert.
 
 **Modify rule for new files:**
-
+//TODO:
 **Restarting OSSEC:**
 
 **Ad OSSEC WUI:**
@@ -489,6 +488,7 @@ https://linode.com/docs/security/ossec-ids-debian-7
 https://www.linode.com/docs/security/securing-your-server/
 
 #### remove unused network services
+//TODO:
 https://www.linode.com/docs/security/securing-your-server/
 
 
@@ -500,6 +500,7 @@ https://www.linode.com/docs/security/securing-your-server/
 
 
 #### CryptSetup & Unlock via ssh
+//TODO:
 https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Partition-Tutorial
 
 https://www.thomas-krenn.com/de/wiki/Voll-verschl%C3%BCsseltes-System_via_SSH_freischalten
@@ -680,8 +681,8 @@ Edit config
 
  	nano /etc/apache2/apache2.conf
  
- Set the following:
-
+Set the following:
+ 
 	Options -Includes
 	Options -ExecCGI
 
@@ -801,6 +802,7 @@ http://www.tecmint.com/install-mariadb-in-debian/
 # Install nextcloud
 
 ## Install dependencies
+//TODO: update package-list
 
 	sudo apt update
 	sudo apt full-upgrade
@@ -925,6 +927,7 @@ Add/change the following:
 //TODO:
 
 ### Log and data path settings
+//TODO:
 
 https://prosody.im/doc/configure
 
@@ -1051,5 +1054,5 @@ https://ryaneschinger.com/blog/securing-a-server-with-ansible/
 https://github.com/EvanK/hardened-ubuntu-docker-host
 
 # Emergency functions
-
+//TODO:
 
