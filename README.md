@@ -5,7 +5,7 @@
 
 
 # Introduction
-Chapters: Hardware, Basic installation, System Hardening, Full Disk Encryption, VPN setup, DynDNS configuration, TLS-Certificate, Webserver installation & Hardening, Nextcloud installation, Nextcloud App configuration,  Prosody installation, Private PGP Server installation, Hidden service configuration, IRC-Server installation, 
+Chapters: Hardware, Basic installation, System Hardening, Full Disk Encryption, VPN setup, DynDNS configuration, TLS-Certificate, Webserver installation & Hardening, Nextcloud installation, Nextcloud App configuration,  Prosody installation, Private PGP Server installation, Hidden service configuration, IRC-Server installation, Emergency Functions
 
 # Hardware
 The following hardware is recommended:
@@ -1036,3 +1036,7 @@ http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unterne
 
 https://ryaneschinger.com/blog/securing-a-server-with-ansible/
 https://github.com/EvanK/hardened-ubuntu-docker-host
+
+# Emergency functions
+
+
