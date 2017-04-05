@@ -198,13 +198,81 @@ To check the status and rules of the firewall, enter:
 	sudo ufw status verbose
 	
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04
+
 #### Configuration of unattended upgrades
 
 	sudo apt-get install unattended-upgrades apt-listchanges
 
-//TODO:
+Configuration:
+
+	nano /etc/apt/apt.conf.d/50unattended-upgrades
+	
+Uncomment at least the following line: 
+
+	Unattended-Upgrade::Mail "root";
+	
+And add packages to automatically upgrade in the following section:
+
+	Unattended-Upgrade::Origins-Pattern {
+    		// ...
+	};
+
+Configure automatic updates via cron:
+
+	nano /etc/apt/apt.conf.d/02periodic
+	
+Write the following into the file:
+
+	// Control parameters for cron jobs by /etc/cron.daily/apt //
+
+
+	// Enable the update/upgrade script (0=disable)
+	APT::Periodic::Enable "1";
+
+
+	// Do "apt-get update" automatically every n-days (0=disable)
+	APT::Periodic::Update-Package-Lists "1";
+
+
+	// Do "apt-get upgrade --download-only" every n-days (0=disable)
+	APT::Periodic::Download-Upgradeable-Packages "1";
+
+
+	// Run the "unattended-upgrade" security upgrade script
+	// every n-days (0=disabled)
+	// Requires the package "unattended-upgrades" and will write
+	// a log in /var/log/unattended-upgrades
+	APT::Periodic::Unattended-Upgrade "1";
+
+
+	// Do "apt-get autoclean" every n-days (0=disable)
+	APT::Periodic::AutocleanInterval "21";
+
+
+	// Send report mail to root
+	//     0:  no report             (or null string)
+	//     1:  progress report       (actually any string)
+	//     2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
+	//     3:  + trace on
+	APT::Periodic::Verbose "0";
+	
+
+Configure apt-listchanges:
+
+	nano /etc/apt/listchanges.conf
+
+With the following:
+
+	[apt]
+	frontend=pager
+	email_address=root
+	confirm=0
+	save_seen=/var/lib/apt/listchanges.db
+	which=both
+
 
 https://wiki.debian.org/UnattendedUpgrades
+
 
 
 
@@ -438,12 +506,7 @@ Disable the following modules:
 
 	groupadd http-web
 	useradd -d /var/www/ -g http-web -s /bin/nologin http-web
-	//TODO: check and delete
-	/*
-	groupadd apache
-	useradd –G apache apache
-	chown –R apache:apache /opt/apache
-	*/
+	chown –R http-web:http-web /opt/apache
 	
 	nano /etc/apache2/apache2.conf
 	
@@ -462,7 +525,7 @@ Verify changes:
 
 	ps –ef |grep http
 	
--> apache process should show the apache user
+-> apache process should show the http-web user
 
 ### Restrict access to directories
 
@@ -534,14 +597,12 @@ Lower the following values:
 
 	LimitRequestFields
 	LimitRequestFieldSize
-	
 
-### Configure Apache Logging
-//TODO: is this needed or compromising privacy? delete?
+### Install and harden PHP
+
+//TODO:
 
 ### Securing Apache with SSL Certificates and LetsEncrypt
-
-
 
 http://www.tecmint.com/apache-security-tips/
 https://geekflare.com/apache-web-server-hardening-security/
