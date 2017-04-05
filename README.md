@@ -292,8 +292,6 @@ Add the following line and change the email-address to your own one:
 	0 2 * * 6 /usr/sbin/logwatch --detail low --format html --range 'between 7 days ago and yesterday' --mailto nobody@ubuntu.org
 
 
-//TODO: check if additional configuration is needed
-
 https://wiki.ubuntuusers.de/Logwatch/
 #### Hardening with AppArmor
 
