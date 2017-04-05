@@ -208,7 +208,7 @@ https://wiki.debian.org/UnattendedUpgrades
 
 
 
-#### Logging configuration
+#### Logging configuration with Logwatch
 
 //TODO:
 
@@ -888,3 +888,8 @@ http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unterne
 
 ### Enable Rule Engine
 //TODO: geekf
+
+# Ansible deployment automation
+
+https://ryaneschinger.com/blog/securing-a-server-with-ansible/
+https://github.com/EvanK/hardened-ubuntu-docker-host
