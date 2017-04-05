@@ -390,6 +390,34 @@ https://www.linode.com/docs/security/securing-your-server/
 #### Intrusion detection with ossec
 //TODO: move this chapter to the end and create an useful config
 
+Install dependencies:
+
+	sudo apt-get install inotify-tools build-essential
+	
+Install OSSEC and check integrity:
+
+	wget -U https://bintray.com/artifact/download/ossec/ossec-hids/ossec-hids-2.8.3.tar.gz
+	wget -U http://ossec.wazuh.com/vm/ossec-vm-2.8.3-checksum.txt
+	md5sum -c ossec-vm-2.8.3-checksum.txt
+	sha1sum -c ossec-hids-2.8.3-checksum.txt
+	
+	tar xf ossec-hids-2.8.3.tar.gz
+	cd ossec-hids-2.8.3
+	sudo ./install.sh
+	
+Choose the following options, when asked:
+
+  * installation option: local
+  * email: a valid email address
+  
+Configuration:
+
+	sudo su
+	cd /var/ossec/etc
+	nano ./ossec.conf
+	
+//TODO: continue!!!
+
 https://linode.com/docs/security/ossec-ids-debian-7
 https://www.linode.com/docs/security/securing-your-server/
 
