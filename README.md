@@ -278,8 +278,23 @@ https://wiki.debian.org/UnattendedUpgrades
 
 #### Logging configuration with Logwatch
 
-//TODO:
+Installation:
 
+	sudo apt-get install logwatch
+
+Configuration for weekly email status:
+
+	sudo rm /etc/cron.daily/00logwatch
+	sudo nano /etc/crontab
+
+Add the following line and change the email-address to your own one:
+
+	0 2 * * 6 /usr/sbin/logwatch --detail low --format html --range 'between 7 days ago and yesterday' --mailto nobody@ubuntu.org
+
+
+//TODO: check if additional configuration is needed
+
+https://wiki.ubuntuusers.de/Logwatch/
 #### Hardening with AppArmor
 
 **Installation:**
