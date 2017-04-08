@@ -473,29 +473,34 @@ Add directories to ignore:
 Info: in the active response section you can edit the ban time for an ip that causes an alert.
 
 **Modify rule for new files:**
-//TODO:
+
+	cd /var/ossec/rules
+	sudo nano ./local_rules.xml
+
+Search for rule-id 554 and set
+
+	level="7" overwrite="yes"
+
+
 **Restarting OSSEC:**
 
-**Ad OSSEC WUI:**
+	sudo /var/ossec/bin/ossec-control restart
+
+**Optional: Add OSSEC WUI:**
 http://www.ossec.net/wiki/index.php/OSSECWUI:Install
 
-**run OSSEC on startup:**
-http://askubuntu.com/questions/604945/ossec-installation-auto-start
-
-//TODO: continue!!!
 
 https://linode.com/docs/security/ossec-ids-debian-7
 https://www.linode.com/docs/security/securing-your-server/
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ossec-security-notifications-on-ubuntu-14-04
+https://hackertarget.com/ossec-introduction-and-installation-guide/
+
 
 #### remove unused network services
 //TODO:
 https://www.linode.com/docs/security/securing-your-server/
-
-
 http://www.makeuseof.com/tag/securing-raspberry-pi-passwords-firewalls/
-
 http://raspberrypi.stackexchange.com/questions/1247/what-should-be-done-to-secure-raspberry-pi
-
 https://www.linode.com/docs/security/securing-your-server/
 
 
