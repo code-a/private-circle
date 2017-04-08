@@ -506,6 +506,23 @@ https://www.linode.com/docs/security/securing-your-server/
 
 #### CryptSetup & Unlock via ssh
 //TODO:
+
+	sudo apt-get install dropbear
+
+Open the initramfs configuration file:
+
+	sudo /etc/initramfs-tools/initramfs.conf
+
+add the following line:
+
+	DROPBEAR=y
+	
+Update initramfs:
+
+	sudo update-initramfs -u
+	
+
+
 https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Partition-Tutorial
 
 https://www.thomas-krenn.com/de/wiki/Voll-verschl%C3%BCsseltes-System_via_SSH_freischalten
