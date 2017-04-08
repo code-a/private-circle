@@ -1024,6 +1024,17 @@ http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unterne
 
 # TODOS
 ## apache hardening subchapters
+
+
+# Ansible deployment automation
+
+https://ryaneschinger.com/blog/securing-a-server-with-ansible/
+https://github.com/EvanK/hardened-ubuntu-docker-host
+
+# Emergency functions
+//TODO:
+
+# Future work
 ### Disable ETAG
 //TODO: geekflare
 
@@ -1039,25 +1050,16 @@ http://www.admin-magazin.de/Das-Heft/2012/04/Eigenen-IRC-Server-fuer-das-Unterne
 	</Directory>
 	
 ### Protect binary and configuration directory permission
-//TODO: geekflare
+//geekflare
 
 ### Clickjacking Attack
-//TODO: geekflare
+//geekflare
 
 ### XSS Protection
-//TODO: geekf
+//geekf
 
 ### Disable HTTP 1.0 Protocol
-//TODO: geekf
+//geekf
 
 ### Enable Rule Engine
-//TODO: geekf
-
-# Ansible deployment automation
-
-https://ryaneschinger.com/blog/securing-a-server-with-ansible/
-https://github.com/EvanK/hardened-ubuntu-docker-host
-
-# Emergency functions
-//TODO:
-
+//geekf
