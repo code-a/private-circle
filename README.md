@@ -329,6 +329,7 @@ https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
 //TODO: 
 **RKHunter:**
 https://wiki.ubuntuusers.de/ClamAV/
+https://www.unixmen.com/installing-scanning-clamav-ubuntu-14-04-linux/
 
 
 #### SSH authentication with keypairs
