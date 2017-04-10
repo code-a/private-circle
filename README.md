@@ -326,8 +326,29 @@ https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
 #### Virus protection with ClamAV and RKHunter
 
 **ClamAV:**
-//TODO: 
+Install ClamAV:
+
+	sudo apt-get install clamav clamav-daemon
+	sudo freshclam
+	
+Configure Crontab for ClamAV:
+
+	crontab -e
+	
+add the following line:
+
+	00 00 * * * clamscan -r /location_of_files_or_folder
+	
+//FIXME: Folderpath to scan 
+//FIXME: Send email with infected files list
+
+
 **RKHunter:**
+//TODO:
+
+https://wiki.ubuntuusers.de/rkhunter/
+https://www.digitalocean.com/community/tutorials/how-to-use-rkhunter-to-guard-against-rootkits-on-an-ubuntu-vps
+
 https://wiki.ubuntuusers.de/ClamAV/
 https://www.unixmen.com/installing-scanning-clamav-ubuntu-14-04-linux/
 
