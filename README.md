@@ -779,7 +779,33 @@ Lower the following values:
 
 ### Install and harden PHP
 
-//TODO:
+Protect against information leakage:
+
+	sudo nano /etc/php.d/security.ini
+Set the following(disables showing the php version):
+
+	expose_php=Off
+
+Set the following to disable the output of errors:
+
+	display_errors=Off
+
+Set the following to disable remote code execution:
+
+	allow_url_fopen=Off
+	allow_url_include=Off
+
+Set the following against DoS attacks:
+
+	memory_limit = 40M
+	
+Disable dangerous php functions:
+
+	disable_functions =exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source
+
+
+
+https://www.cyberciti.biz/tips/php-security-best-practices-tutorial.html
 
 ### Securing Apache with SSL Certificates and LetsEncrypt
 
