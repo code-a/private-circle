@@ -1059,6 +1059,7 @@ https://prosody.im/doc/prosodyctl
 //TODO: review...
 https://wiki.debian.org/InstallingProsody
 https://github.com/systemli/ansible-role-prosody
+https://c0by.de/blog/2016/12/14/prosody-installation-ein-xmpp-jabber-server-teil-1/
 
 ## Installing IRC: 
 
