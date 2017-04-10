@@ -347,6 +347,18 @@ add the following line:
 **RKHunter:**
 //TODO:
 
+	sudo apt-get install rkhunter
+	sudo rkhunter --update
+	
+Install mailutils for email notifications:
+
+	sudo apt-get install mailutils
+
+Create cronjob:
+
+	
+
+
 https://wiki.ubuntuusers.de/rkhunter/
 https://www.digitalocean.com/community/tutorials/how-to-use-rkhunter-to-guard-against-rootkits-on-an-ubuntu-vps
 
@@ -544,7 +556,34 @@ Update initramfs:
 
 	sudo update-initramfs -u
 	
+//TODO: is this needed? Network configuration:
 
+	sudo nano /etc/initramfs-tools/initramfs.conf
+
+
+Copy RSA keys from the following folder to your local machine:
+
+	/etc/initramfs-tools/root/.ssh/
+
+Configure cryptsetup:
+
+	sudo nano /usr/share/initramfs-tools/scripts/local-top/cryptroot
+	
+After line 289 comment the lines as shown:
+
+	  if [ -z "$cryptkeyscript" ]; then
+	   cryptkey="Unlocking the disk $cryptsource ($crypttarget)\nEnter passphrase: "
+	   #if [ -x /bin/plymouth ] && plymouth --ping; then
+	   # cryptkeyscript="plymouth ask-for-password --prompt"
+	   # cryptkey=$(echo -e "$cryptkey")
+	   #else
+	    cryptkeyscript="/lib/cryptsetup/askpass"
+	   #fi
+	  fi
+
+Update initramfs:
+
+	sudo update-initramfs -u
 
 https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Partition-Tutorial
 
