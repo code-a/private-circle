@@ -293,6 +293,7 @@ Add the following line and change the email-address to your own one:
 
 
 https://wiki.ubuntuusers.de/Logwatch/
+
 #### Hardening with AppArmor
 
 **Installation:**
@@ -837,11 +838,7 @@ Check privileges:
 https://www.digitalocean.com/community/tutorials/how-to-secure-mysql-and-mariadb-databases-in-a-linux-vps
 https://mariadb.com/kb/en/mariadb/securing-mariadb/
 http://www.tecmint.com/install-mariadb-in-debian/
-# Install Mailserver
 
-//TODO: write chapter
-
-## Filter to only allow PGP encrypted mails
 
 # Install nextcloud
 
@@ -1102,3 +1099,9 @@ https://github.com/EvanK/hardened-ubuntu-docker-host
 
 ### Enable Rule Engine
 //geekf
+
+## Install Mailserver
+
+//write chapter
+
+### Filter to only allow PGP encrypted mails
