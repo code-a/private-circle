@@ -531,8 +531,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-os
 https://hackertarget.com/ossec-introduction-and-installation-guide/
 
 
-#### remove unused network services
-//TODO:
+
 https://www.linode.com/docs/security/securing-your-server/
 http://www.makeuseof.com/tag/securing-raspberry-pi-passwords-firewalls/
 http://raspberrypi.stackexchange.com/questions/1247/what-should-be-done-to-secure-raspberry-pi
@@ -1111,10 +1110,10 @@ https://github.com/EvanK/hardened-ubuntu-docker-host
 
 # Future work
 ### Disable ETAG
-//TODO: geekflare
+// geekflare
 
 ### Limit Request Size
-//TODO: delete. not compatible with nextcloud?
+//FIXLATER: delete. not compatible with nextcloud?
 
  	nano /etc/apache2/apache2.conf
  
@@ -1138,6 +1137,10 @@ https://github.com/EvanK/hardened-ubuntu-docker-host
 
 ### Enable Rule Engine
 //geekf
+
+#### remove unused network services
+//
+
 
 ## Install Mailserver
 
