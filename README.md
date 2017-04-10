@@ -501,7 +501,154 @@ https://www.linode.com/docs/security/securing-your-server/
 #### CryptSetup & Unlock via ssh
 //TODO:
 
-	sudo apt-get install dropbear
+Install dependencies:
+
+	sudo apt-get install busybox cryptsetup initramfs-tools
+
+Create post-install script for kernel updates:
+
+	sudo nano /etc/kernel/postinst.d/initramfs-rebuild
+
+add the following script:
+
+	#!/bin/sh -e
+
+	# Rebuild initramfs.gz after kernel upgrade to include new kernel's modules.
+	# https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/initramfs-rebuild.sh
+	# Save as (chmod +x): /etc/kernel/postinst.d/initramfs-rebuild
+
+	# Remove splash from cmdline.
+	if grep -q '\bsplash\b' /boot/cmdline.txt; then
+	  sed -i 's/ \?splash \?/ /' /boot/cmdline.txt
+	fi
+
+	# Exit if not building kernel for this Raspberry Pi's hardware version.
+	version="$1"
+	current_version="$(uname -r)"
+	case "${current_version}" in
+	  *-v7+)
+	    case "${version}" in
+	      *-v7+) ;;
+	      *) exit 0
+	    esac
+	  ;;
+	  *+)
+	    case "${version}" in
+	      *-v7+) exit 0 ;;
+	    esac
+	  ;;
+	esac
+
+	# Exit if rebuild cannot be performed or not needed.
+	[ -x /usr/sbin/mkinitramfs ] || exit 0
+	[ -f /boot/initramfs.gz ] || exit 0
+	lsinitramfs /boot/initramfs.gz |grep -q "/$version$" && exit 0  # Already in initramfs.
+
+	# Rebuild.
+	mkinitramfs -o /boot/initramfs.gz "$version"
+
+Add tools to initramfs:
+
+	sudo nano /etc/initramfs-tools/hooks/resize2fs
+	
+Add the following script:
+
+	#!/bin/sh -e
+
+	# Copy resize2fs, fdisk, and other kernel modules into initramfs image.
+	# https://github.com/Robpol86/robpol86.com/blob/master/docs/_static/resize2fs.sh
+	# Save as (chmod +x): /etc/initramfs-tools/hooks/resize2fs
+
+	COMPATIBILITY=true  # Set to false to skip copying other kernel's modules.
+
+	PREREQ=""
+	prereqs () {
+	  echo "${PREREQ}"
+	}
+	case "${1}" in
+	  prereqs)
+	    prereqs
+	    exit 0
+	  ;;
+	esac
+
+	. /usr/share/initramfs-tools/hook-functions
+
+	copy_exec /sbin/resize2fs /sbin
+	copy_exec /sbin/fdisk /sbin
+
+	# Raspberry Pi 1 and 2+3 use different kernels. Include the other.
+	if ${COMPATIBILITY}; then
+	  case "${version}" in
+	    *-v7+) other_version="$(echo ${version} |sed 's/-v7+$/+/')" ;;
+	    *+) other_version="$(echo ${version} |sed 's/+$/-v7+/')" ;;
+	    *)
+	      echo "Warning: kernel version doesn't end with +, ignoring."
+	      exit 0
+	  esac
+	  cp -r /lib/modules/${other_version} ${DESTDIR}/lib/modules/
+	fi
+
+
+### build the initramfs
+
+	sudo chmod +x /etc/kernel/postinst.d/initramfs-rebuild
+	sudo chmod +x /etc/initramfs-tools/hooks/resize2fs
+	sudo -E CRYPTSETUP=y mkinitramfs -o /boot/initramfs.gz
+	lsinitramfs /boot/initramfs.gz |grep -P "sbin/(cryptsetup|resize2fs|fdisk)"
+
+### prepare boot files
+
+	sudo nano /boot/config.txt
+	
+Add the following to the end of the file:
+
+	initramfs initramfs.gz followkernel
+Close the file.
+
+	sudo nano /boot/cmdline.txt
+	
+Add the following to the end of the line:
+
+	cryptdevice=/dev/mmcblk0p2:sdcard
+Replace the following:
+
+	root=/dev/mmcblk0p2
+with:
+
+	root=/dev/mapper/sdcard
+Close the file.
+
+	sudo nano /etc/fstab
+Replace the following:
+
+	/dev/mmcblk0p2
+with:
+
+	/dev/mapper/sdcard
+Close the file.
+
+
+	sudo nano /etc/crypttab
+	
+Append the following to the end of the file:
+
+	sdcard  /dev/mmcblk0p2  none    luks
+	
+//TODO: install dropbear before reboot!!
+
+Run the following to reboot to the initramfs:
+
+	sudo reboot
+
+
+
+
+
+
+
+
+
 
 Open the initramfs configuration file:
 
@@ -549,6 +696,8 @@ https://github.com/NicoHood/NicoHood.github.io/wiki/Raspberry-Pi-Encrypt-Root-Pa
 https://www.thomas-krenn.com/de/wiki/Voll-verschl%C3%BCsseltes-System_via_SSH_freischalten
 
 https://gist.github.com/meeee/46133155c4afd8bb71c6
+
+https://robpol86.com/my_server/raspberry_pi_luks.html
 
 ## DynDNS setup
 
