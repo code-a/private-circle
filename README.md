@@ -324,46 +324,6 @@ https://wiki.ubuntuusers.de/Logwatch/
 https://wiki.debian.org/AppArmor/HowToUse
 https://wiki.ubuntuusers.de/AppArmor/
 https://wiki.ubuntuusers.de/AppArmor/Profile_erstellen/
-#### Virus protection with ClamAV and RKHunter
-
-**ClamAV:**
-Install ClamAV:
-
-	sudo apt-get install clamav clamav-daemon
-	sudo freshclam
-	
-Configure Crontab for ClamAV:
-
-	crontab -e
-	
-add the following line:
-
-	00 00 * * * clamscan -r /location_of_files_or_folder
-	
-//FIXME: Folderpath to scan 
-//FIXME: Send email with infected files list
-
-
-**RKHunter:**
-//TODO:
-
-	sudo apt-get install rkhunter
-	sudo rkhunter --update
-	
-Install mailutils for email notifications:
-
-	sudo apt-get install mailutils
-
-Create cronjob:
-
-	
-
-
-https://wiki.ubuntuusers.de/rkhunter/
-https://www.digitalocean.com/community/tutorials/how-to-use-rkhunter-to-guard-against-rootkits-on-an-ubuntu-vps
-
-https://wiki.ubuntuusers.de/ClamAV/
-https://www.unixmen.com/installing-scanning-clamav-ubuntu-14-04-linux/
 
 
 #### SSH authentication with keypairs
@@ -1173,3 +1133,45 @@ https://github.com/EvanK/hardened-ubuntu-docker-host
 //write chapter
 
 ### Filter to only allow PGP encrypted mails
+
+
+#### Virus protection with ClamAV and RKHunter
+
+**ClamAV:**
+Install ClamAV:
+
+	sudo apt-get install clamav clamav-daemon
+	sudo freshclam
+	
+Configure Crontab for ClamAV:
+
+	crontab -e
+	
+add the following line:
+
+	00 00 * * * clamscan -r /location_of_files_or_folder
+	
+//FIXMELATER: Folderpath to scan 
+//FIXMELATER: Send email with infected files list
+
+
+**RKHunter:**
+//FIXMELATER:
+
+	sudo apt-get install rkhunter
+	sudo rkhunter --update
+	
+Install mailutils for email notifications:
+
+	sudo apt-get install mailutils
+
+Create cronjob:
+
+	
+
+
+https://wiki.ubuntuusers.de/rkhunter/
+https://www.digitalocean.com/community/tutorials/how-to-use-rkhunter-to-guard-against-rootkits-on-an-ubuntu-vps
+
+https://wiki.ubuntuusers.de/ClamAV/
+https://www.unixmen.com/installing-scanning-clamav-ubuntu-14-04-linux/
